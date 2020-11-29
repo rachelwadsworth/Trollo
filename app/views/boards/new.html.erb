@@ -1,3 +1,9 @@
 
-<h1>New Board</h1>
-
+<h1>Create A Board</h1>
+<%= form_with(model: @board, local: true,class: "ui form") do |f| %>
+<div class = "field">
+  <%= f.label :title %>
+  <%= f.text_field :title, required: true, autofocus: true, placeholder: "Board Title" %>
+</div>
+<%= f.submit %>
+<% end %>

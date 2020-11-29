@@ -1,47 +1,26 @@
 <h1>Yollo to Trollo</h1>
+<nav class="ui menu">
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "item" %>
+    <%= link_to 'Boards', boards_path, class: "item" %>
+</nav> 
+
+<div class="ui container">
 <h1>Boards</h1>
-<%= link_to new_board_path, class: 'ui button primary' do %>
-  <i class="plus icon"></i>New Board
-<% end %>
-<hr>
+<%= link_to 'Add Board', new_board_path, class: "ui blue button" %>
+<hr />
+<br />
 <div class="ui grid">
-  <% colors = ['red', 'blue', 'green', 'purple', 'orange', 'yellow', 'olive', 'teal', 'violet', 'pink', 'grey', 'black'] %>
-  <% @boards.each do |board| %>
-    <div class="sixteen wide mobile eight wide tablet four wide computer column">
-      <div class="<%= colors.sample %> ui card">
-        <div class="content">
-          <%= link_to board_path(board.id), method: :delete, data: {confirm: "Are you sure you want to delete \"#{board.name}\"?"} do %>
-            <i class="right floated trash alternate outline icon"></i>
-          <% end %>
-
-          <%= link_to edit_board_path(board.id) do %>
-            <i class="right floated edit outline icon"></i>
-          <% end %>
-
-          <div class="header">
-            <%= board.name %>
-          </div>
-
-          <div class="description">
-            <% if board.lists.count > 0 %>
-              <ul>
-                <% board.lists.limit(2).each do |list| %>
-                  <li><%= list.name %></li>
-                <% end %>
-                <li>...</li>
-              </ul>
-            <% else %>
-              This board does not have any lists yet.
-            <% end %>
-          </div>
-        </div>
-
-        <div class="extra content">
-          <%= link_to "View", board, class: 'ui fluid button positive' %>
-        </div>
+<% @boards.each do |board| %>
+<div class="four wide column">
+  <div class="ui card">
+    <h2>
+      <div class="ui center aligned">
+        <%= link_to board.name, board_path(board), class: "ui center aligned" %>
       </div>
-    </div>
-  <% end %>
+    </h2>
+    <br />
+  </div>
 </div>
-
-
+<% end %>
+</div>
+</div>
