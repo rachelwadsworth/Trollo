@@ -1,17 +1,3 @@
-<h1>Boards</h1>
-<hr />
-
-<div class= "ui centered card">
-  <div class "content">
-    <div class = "center aligned header b_title"><h2>YOUR BOARDS</h2></div>
-      <% @boards.each do |b| %>
-        <li class = "center aligned description">
-            <%= link_to b.name, board_path(b), class: "b_name" %><%= button_to "Delete Board", b, method: :delete, class: "d_btn" %> 
-            <br />
-        </li>
-      <% end %>
-      </div>
-      <%= link_to "Create New Board", new_board_path, class: "ui green bottom attached button" %> 
-</div>
-
+<h1>Yollo to Trollo</h1>
+<h3>All your Boards</h3>
 
