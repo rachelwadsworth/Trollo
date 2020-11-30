@@ -1,27 +1,23 @@
-<h1><%= @board.title %></h1>
-<hr />
-<%= link_to "Create a New List", new_board_list_path(@board), class: "ui green button"%>
-<br />
-<br />
-<div class = "ui three column grid">
-  <% @lists.each do |l| %>
-    <div class = "column">
-      <div class = "ui fluid card">
-        <div class = "card">
-          <div class = "content">
-              <h2 class = "center aligned header"><%= l.title %></h2>
-              <div class = "description">
-                <% l.tasks.each do |t| %>  
-                <li class = "t_title">
-                  <%= t.title %><br /><%= button_to "Delete Task", [l, t], method: :delete, class: "t_btn" %> 
-                </li>
-                <% end %>
-              </div>
-          </div>
-          <%= link_to "Add Task", new_list_task_path(l), class: "ui buttom attached button" %>
-          <%= link_to "Delete LIST", [@board, l], method: :delete, class: "ui red buttom attached button" %>
-        </div>
+<h1><%= @board.name %></h1>
+<br>
+<%= link_to 'Add List', new_board_list_path(@board), class: "ui blue button inverted" %>
+<%= link_to 'Edit Board', edit_board_path(@board), class: "ui blue button inverted" %>
+<br>
+<br>
+<hr>
+<div class="ui cards">
+  <% @board.lists.order(:priority).each do |list| %>
+    <div class="ui blue card">
+      <div class="title">
+        <h3><%= link_to list.name, list_tasks_path(list) %></h3>
+        <h4>Priority:  <%= list.priority %> </h4>
       </div>
-    </div> 
+      <br>
+  <%= link_to 'Edit List', edit_board_list_path(list.board_id, list), class: "ui blue button inverted" %>
+  <%= link_to 'Delete List', board_list_path(list.board_id, list), method: :delete, class: "ui red button inverted" %>
+    </div>
   <% end %>
 </div>
+<br>  
+<%= link_to 'Back', boards_path, class: "ui button" %>
+<%= link_to 'Delete Board', board_path(@board), method: :delete, class: "ui red button inverted" %>

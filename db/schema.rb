@@ -16,25 +16,24 @@ ActiveRecord::Schema.define(version: 2020_11_29_025805) do
   enable_extension "plpgsql"
 
   create_table "boards", force: :cascade do |t|
-    t.string "title"
+    t.string "name"
     t.bigint "user_id", null: false
-    t.boolean "favorite"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_boards_on_user_id"
   end
 
   create_table "lists", force: :cascade do |t|
-    t.string "title"
+    t.string "name"
     t.bigint "board_id", null: false
-    t.boolean "favorite"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["board_id"], name: "index_lists_on_board_id"
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string "title"
+    t.string "name"
+    t.text "description"
     t.bigint "list_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

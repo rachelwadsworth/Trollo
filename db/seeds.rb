@@ -7,3 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "faker"
 
+5.times do
+  Board.create(name: Faker::Creature::Cat.name )
+end
+
+puts "seeded"
